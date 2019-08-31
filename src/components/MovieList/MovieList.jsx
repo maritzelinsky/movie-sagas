@@ -20,9 +20,9 @@ class MovieList extends Component {
             <div className="App">
                 {this.props.reduxStore.movies.map(movie => {
                     return (
-                        <div>
+                        <div key={movie.id}>
                             <h2>{movie.title}</h2>
-                            <img src={movie.poster} />
+                            <img src={movie.poster} alt="movie poster" />
                             <p>{movie.description}</p>
                         </div>
                     )

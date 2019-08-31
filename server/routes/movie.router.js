@@ -10,9 +10,23 @@ router.get('/', (req, res) => {
         res.send(result.rows);
     })
     .catch(error => {
-        console.log("Error in movie.router GET:", error)
+        console.log("Error in movie.router / GET:", error)
         res.sendStatus(500);
     })
+});
+
+// pulls details for the selected movie when clicked
+router.get('/details/:id', (req, res) => {
+    let detailsId = req.params.id
+    let queryText = 'SELECT * FROM "movies" WHERE "id" = $1;';
+    pool.query(queryText, [req.body, detailsId])
+        .then(result => {
+            res.send(result.rows);
+        })
+        .catch(error => {
+            console.log("Error in movie.router /details GET:", error)
+            res.sendStatus(500);
+        })
 });
 
 module.exports = router;
