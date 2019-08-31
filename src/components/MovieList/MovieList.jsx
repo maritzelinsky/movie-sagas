@@ -14,6 +14,15 @@ class MovieList extends Component {
         })
     }
 
+    handleClick = (id) => {
+        this.props.dispatch({
+            type: 'GET_DETAILS',
+            payload: id
+        })
+        console.log(id);
+        this.props.history.push('/details')
+    }
+
     // Renders all the movies in the database to the DOM
     render() {
         return (
@@ -22,7 +31,7 @@ class MovieList extends Component {
                     return (
                         <div key={movie.id}>
                             <h2>{movie.title}</h2>
-                            <img src={movie.poster} alt="movie poster" />
+                            <img src={movie.poster} alt="movie poster" onClick={() => this.handleClick(movie.id)}/>
                             <p>{movie.description}</p>
                         </div>
                     )

@@ -19,9 +19,9 @@ router.get('/', (req, res) => {
 router.get('/details/:id', (req, res) => {
     let detailsId = req.params.id
     let queryText = 'SELECT * FROM "movies" WHERE "id" = $1;';
-    pool.query(queryText, [req.body, detailsId])
+    pool.query(queryText, [detailsId])
         .then(result => {
-            res.send(result.rows);
+            res.send(result.rows[0]);
         })
         .catch(error => {
             console.log("Error in movie.router /details GET:", error)
