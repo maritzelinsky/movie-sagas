@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import MovieList from '../MovieList/MovieList';
 import Details from '../Details/Details';
+import Edit from '../Edit/Edit';
 import {connect} from 'react-redux';
 import {HashRouter as Router, Route} from 'react-router-dom';
 
@@ -13,6 +14,7 @@ class App extends Component {
       <div className="App">
           <Route path='/' exact component={MovieList} />
           <Route path='/details' component={Details} />
+          <Route path='/edit' component={Edit} />
       </div>
     </Router>
     );

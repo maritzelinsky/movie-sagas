@@ -41,10 +41,23 @@ function* getDetailsSaga(action) {
     }
 }
 
+function* editDetailsSaga(action) {
+    try {
+        yield axios.put(`/details/`, action.payload);
+        yield put({
+            type: 'SET_DETAILS',
+            payload: action.payload.id
+        })
+    } catch (error) {
+        console.log('Error in POST', error);
+    }
+}
+
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('GET_MOVIES', getMoviesSaga)
     yield takeEvery('GET_DETAILS', getDetailsSaga)
+    yield takeEvery('EDIT_DETAILS', editDetailsSaga)
 }
 
 // Create sagaMiddleware
